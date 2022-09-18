@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            envFrom:
+            - secretRef:
+                name: dp
+            image: kubernetestests
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - name: config
+              mountPath: /app/config/
+          restartPolicy: OnFailure
+          volumes:
+          - name: config
+            configMap:
+              name: ktconfigmap

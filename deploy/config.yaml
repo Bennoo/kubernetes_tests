@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ktconfigmap
+data:
+  config.ini: |
+    [SECTION]
+    first = k8sconfig
