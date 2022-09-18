@@ -10,6 +10,9 @@ spec:
         spec:
           containers:
           - name: hello
+            env:
+            - name: CONFIG_PATH
+              value: /app/config/config.ini
             envFrom:
             - secretRef:
                 name: dp

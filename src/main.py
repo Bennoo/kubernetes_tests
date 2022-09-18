@@ -1,11 +1,13 @@
 import pandas as pd
-import configparser
 import os
 
+from modules import configuration, environment
+
 if __name__ == "__main__":
-    config = configparser.ConfigParser()
-    config.read('config/config.ini')
+    config_path = environment.get_config_path()
+    config = configuration.get_config_parser(config_path)
+    username, password = environment.get_dp_credentials()
     test_df = pd.DataFrame()
-    username = os.getenv('DP_USER')
     print(username)
+    print(password)
     print(f'Hello there first param: {config["SECTION"]["first"]}')
